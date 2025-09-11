@@ -23,7 +23,7 @@ if (config.aliases) {
     Object.entries(config.aliases).map(([alias, alias_path]) => [
       alias,
       path.resolve(config.build.context, alias_path),
-    ]),
+    ])
   );
 }
 
@@ -119,6 +119,11 @@ var webpackConfig = {
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: ["postcss-loader"],
+        type: "css",
+      },
       {
         test: require.resolve("jquery"),
         use: [
@@ -232,7 +237,7 @@ var webpackConfig = {
   performance: { hints: false },
   watchOptions: {
     followSymlinks: true,
-    ignored: '**/.git', // The default would also ignore "node_modules" which we don't want
+    ignored: "**/.git", // The default would also ignore "node_modules" which we don't want
   },
   experiments: {
     css: false,
